@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+	Excluir cliente
+{% endblock page_title %}
+
+{% block content %}
+	<h1>Excluir cliente</h1>
+	<p>Tem certeza que deseja excluir o cliente {{customers.firstName}}?<p>
+	<form method="POST">
+		{% csrf_token %}	
+		{{ form|crispy }}
+
+		{% if customers.pk %}
+			<a href="{% url 'customers_update' pk=customers.pk %}" class="btn btn-warning me-2">Cancelar</a>
+		{% endif %}
+		<button class="btn btn-danger" type="submit">Excluir</button>
+
+	</form>
+{% endblock content %}
+

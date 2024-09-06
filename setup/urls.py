@@ -1,22 +1,24 @@
-"""
-URL configuration for setup project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
 
+from customers.views import CustomersListView, CustomersCreateView, CustomersUpdateView, CustomersDeleteView
+from orders.views import OrdersListView, OrdersCreateView, OrdersUpdateView, OrdersDeleteView
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+
+	# Clientes
+	path("", CustomersListView.as_view(), name="home"),
+	path("create-customers", CustomersCreateView.as_view(), name="customers_create"),
+	path("update-customers/<int:pk>", CustomersUpdateView.as_view(), name="customers_update"),
+	path("delete-customers/<int:pk>", CustomersDeleteView.as_view(), name="customers_delete"),
+
+	# Pedidos
+	path("orders", OrdersListView.as_view(), name="orders_list"),
+	path("create-orders", OrdersCreateView.as_view(), name="orders_create"),
+	path("update-orders/<int:pk>", OrdersUpdateView.as_view(), name="orders_update"),
+	path("delete-orders/<int:pk>", OrdersDeleteView.as_view(), name="orders_delete"),
+]	
+ 

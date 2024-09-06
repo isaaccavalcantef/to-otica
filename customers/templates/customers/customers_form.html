@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+
+{% block page_title %}
+	{% if customers.pk %}
+		Editar cliente
+	{% else %}
+		Cadastrar cliente
+	{% endif %}
+{% endblock page_title %}
+
+{% block content %}
+	{% if customers.pk %}
+		<h1>Editar cliente</h1>
+	{% else %}
+		<h1>Cadastrar cliente</h1>
+	{% endif %}
+	
+	<form method="POST">
+		{% csrf_token %}	
+		{{ form|crispy }}
+		
+		<div class="container mt-4 d-flex justify-content-end align-items-center">
+			{% if customers.pk %}
+				<a href="{% url 'customers_delete' pk=customers.pk %}" class="btn btn-outline-danger me-auto"> Excluir</a>
+			{% endif %}
+			<a href="{% url 'customers_list' %}" class="btn btn-secondary me-2">Voltar</a>
+			<button class="btn btn-success" type="submit">Salvar</button>
+		</div>
+	</form>
+		
+{% endblock content %}
