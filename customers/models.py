@@ -12,4 +12,8 @@ class Customers(models.Model):
 		verbose_name="Telefone 1", max_length= 11, null=False, blank=False)
 	phone2 = models.CharField(verbose_name="Telefone 2", max_length= 11)
 	created_at = models.DateTimeField(auto_now_add=True, null=False, blank=False)
+
+	def __str__(self):
+		return str(self.firstName)
+	
 	

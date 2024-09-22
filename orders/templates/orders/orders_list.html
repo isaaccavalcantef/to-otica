@@ -17,20 +17,18 @@
 				<th scope="col">Código</th>
 				<th scope="col">Produto</th>
 				<th scope="col">Valor</th>
-				<th scope="col">Data</th>
+				<th scope="col">Cliente</th>
 			</tr>
 			</thead>
 			<tbody>
 				{% for order in orders_list %}
-					
-					
-						<tr onclick="{% url 'orders_update' pk=order.pk %}" style="cursor: hand;" class="container">
-							<th scope="row">{{order.id}}</th>
-							<td>{{order.product}}</td>
-							<td>{{order.status}}</td>
-							<td>{{order.date}}</td>
-							<td><a href="{% url 'orders_update' pk=order.pk %}" class="btn btn-primary">Editar</a></td>
-						</tr>
+					<tr href="{% url 'orders_update' pk=order.pk %}" style="cursor: hand;" class="container">
+						<th scope="row">{{order.id}}</th>
+						<td>{{order.product}}</td>
+						<td>{{order.status}}</td>
+						<td>{{.pk}}</td>
+						<td><a href="{% url 'orders_update' pk=order.pk %}" class="btn btn-primary">Editar</a></td>
+					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
