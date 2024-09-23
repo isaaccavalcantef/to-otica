@@ -27,8 +27,8 @@
 						<td>{{customer.firstName}} {{customer.lastName}}</td>
 						<td>{{customer.cpf}}</td>
 						<td>
-							<a href="{% url 'customers_update' pk=customer.pk %}" class="btn btn-warning btn-sm">Editar</a>
-							<a href="{% url 'customer_detail' pk=customer.pk %}" class="btn btn-success btn-sm">Abrir</a>
+							<a href="{% url 'customers_update' pk=customer.pk %}" class="btn btn-success btn-sm">Abrir</a>
+							<a href="{% url 'customer_detail' pk=customer.pk %}" class="btn btn-primary btn-sm">Pedidos</a>
 						</td>
 					</tr>
 				{% endfor %}
