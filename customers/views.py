@@ -24,12 +24,13 @@ class CustomerOrdersView(DetailView):
 		orders = Orders.objects.filter(customer_id=pk)
 		ordersCount = Orders.objects.filter(customer_id=pk).count
 		ordersSoma = Orders.objects.filter(customer_id=pk)
+		soma = Orders.objects.filter(customer_id=pk).annotate(sum('valor'))
 		context = super(CustomerOrdersView, self).get_context_data(**kwargs)
 		context['Orders'] = orders
 		context['customers'] = customers
 		context['pk'] = pk
 		context['count'] = ordersCount
-		context['sum'] = ordersSoma
+		context['sum'] = soma
 		return context
 
 

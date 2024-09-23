@@ -13,25 +13,17 @@ from .models import Orders
 class OrdersListView(ListView):
 	model = Orders
 
-def OrdersDetailView(request):
-	order = Orders.objects.all()
-	customer = Customers.objects.all()
-	context = {
-		
-	}
-	return render(request, 'oders/oders_detail.html',{"order_list": order, "customer": customer})
-
 class OrdersDetailView(DetailView):
 	model = Orders
 
 class OrdersCreateView(CreateView):
 	model = Orders
-	fields = ["product", "status", "customer"]
+	fields = ["product", "status","valor", "customer"]
 	success_url = reverse_lazy("orders_list")
 
 class OrdersUpdateView(UpdateView):
 	model = Orders
-	fields = ["product", "status", "customer"]
+	fields = ["product", "status","valor",  "customer"]
 	success_url = reverse_lazy("orders_list")
 
 class OrdersDeleteView(DeleteView):

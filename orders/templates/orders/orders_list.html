@@ -16,6 +16,7 @@
 			<tr>
 				<th scope="col">Código</th>
 				<th scope="col">Produto</th>
+				<th scope="col">Status</th>
 				<th scope="col">Valor</th>
 				<th scope="col">Cliente</th>
 			</tr>
@@ -26,6 +27,7 @@
 						<th scope="row">{{order.id}}</th>
 						<td>{{order.product}}</td>
 						<td>{{order.status}}</td>
+						<td>{{order.valor}}</td>
 						<td>{{order.customer_id}}</td>
 						<td><a href="{% url 'orders_update' pk=order.pk %}" class="btn btn-primary">Editar</a></td>
 					</tr>
