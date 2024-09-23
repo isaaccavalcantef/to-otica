@@ -8,29 +8,31 @@
 {% endblock page_title %}
 
 {% block content %}
-	{% if customers.pk %}
+
+	{% if customers %}
 	<div class="d-flex justify-content-between align-items-center">
-		<h1>Clientes</h1>
+		<h2>{% for x in customers %}Clientes: {{x.firstName}} {{x.lastName}} (cpf: {{ x.cpf }} )
+			
+			{% endfor %}</h2>
+			
 		<a href="{% url 'home' %}" class="btn btn-secondary me-2">Voltar</a>
 	</div>		
 		
 	{% else %}
+	<div class="d-flex justify-content-between align-items-center">
 		<h1>Erro</h1>
+		<a href="{% url 'home' %}" class="btn btn-secondary me-2">Voltar</a>
+	</div>
 	{% endif %}
 
-	<ul>
-		<li>Código: {{customer.id}}</li>
-		<li>Nome: {{customer.firstName}} {{customer.lastName}}</li>
-		<li>Cpf: {{customer.cpf}}</li>
-	</ul>
 
 	
+
+		<h1 class="mt-5">{{count}} Pedido{% if count > 1 %}s{% endif %}  
 	
-
-
-		<h1>Pedidos</h1>
-	{{pk}}
-	{{order.id}}
+		</h1>
+	{% comment %} {{pk}}
+	{{order.id}} {% endcomment %}
 
 	<table class="table">
 		<thead>

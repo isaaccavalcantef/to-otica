@@ -15,15 +15,23 @@ from orders.models import Orders
 class CustomersListView(ListView):
 	model = Customers
 
-class CustomersDetailView(DetailView):
+class CustomerOrdersView(DetailView):
 	model = Customers
+	fields = ["firstName", "lastName", "cpf", "phone1","phone2"]
 	def get_context_data(self, **kwargs):
 		pk = self.kwargs['pk']
-		orders = Orders.objects.all().filter(customer_id=pk)
-		context = super(CustomersDetailView, self).get_context_data(**kwargs)
+		customers = Customers.objects.filter(id=pk).values
+		orders = Orders.objects.filter(customer_id=pk)
+		ordersCount = Orders.objects.filter(customer_id=pk).count
+		ordersSoma = Orders.objects.filter(customer_id=pk)
+		context = super(CustomerOrdersView, self).get_context_data(**kwargs)
 		context['Orders'] = orders
+		context['customers'] = customers
 		context['pk'] = pk
+		context['count'] = ordersCount
+		context['sum'] = ordersSoma
 		return context
+
 
 class CustomersCreateView(CreateView):
 	model = Customers

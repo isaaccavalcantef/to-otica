@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.urls import path
 
-from customers.views import CustomersListView, CustomersCreateView, CustomersUpdateView, CustomersDeleteView, CustomersDetailView
+from customers.views import CustomersListView, CustomersCreateView, CustomersUpdateView, CustomersDeleteView, CustomerOrdersView
 from orders.views import OrdersListView, OrdersCreateView, OrdersUpdateView, OrdersDeleteView, OrdersDetailView
 
 
@@ -12,7 +12,7 @@ urlpatterns = [
 
 	# Clientes
 	path("", CustomersListView.as_view(), name="customers_list"),
-	path("detail-customer/<int:pk>", CustomersDetailView.as_view(), name="customer_detail"),
+	path("detail-customer/<int:pk>", CustomerOrdersView.as_view(), name="customer_detail"),
 	path("create-customers", CustomersCreateView.as_view(), name="customers_create"),
 	path("update-customers/<int:pk>", CustomersUpdateView.as_view(), name="customers_update"),
 	path("delete-customers/<int:pk>", CustomersDeleteView.as_view(), name="customers_delete"),

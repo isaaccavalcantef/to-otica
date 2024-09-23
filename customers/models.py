@@ -14,6 +14,8 @@ class Customers(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True, null=False, blank=False)
 
 	def __str__(self):
-		return str(self.firstName)
+		a = str(self.firstName)
+		b = str(self.lastName)
+		return str(a+" "+b)
 	
 	
