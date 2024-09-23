@@ -1,5 +1,6 @@
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 
 
@@ -11,12 +12,17 @@ from .models import Orders
 
 class OrdersListView(ListView):
 	model = Orders
-	
-# def OrdersCustomersListView(request):
-# 	model = Customers
-# 	orders = Orders.objects.all
-# 	return render(request, "orders/templates/orders/orders_list.html", {"orders": orders})
-	
+
+def OrdersDetailView(request):
+	order = Orders.objects.all()
+	customer = Customers.objects.all()
+	context = {
+		
+	}
+	return render(request, 'oders/oders_detail.html',{"order_list": order, "customer": customer})
+
+class OrdersDetailView(DetailView):
+	model = Orders
 
 class OrdersCreateView(CreateView):
 	model = Orders

@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+
+{% block page_title %}
+	Cliente
+{% endblock page_title %}
+
+{% block content %}
+	{% if customers.pk %}
+	<div class="d-flex justify-content-between align-items-center">
+		<h1>Clientes</h1>
+		<a href="{% url 'home' %}" class="btn btn-secondary me-2">Voltar</a>
+	</div>		
+		
+	{% else %}
+		<h1>Erro</h1>
+	{% endif %}
+
+	<ul>
+		<li>Código: {{customer.id}}</li>
+		<li>Nome: {{customer.firstName}} {{customer.lastName}}</li>
+		<li>Cpf: {{customer.cpf}}</li>
+	</ul>
+
+	
+	
+
+
+		<h1>Pedidos</h1>
+	{{pk}}
+	{{order.id}}
+
+	<table class="table">
+		<thead>
+		<tr>
+			<th scope="col">Código</th>
+			<th scope="col">Produto</th>
+			<th scope="col">Valor</th>
+			<th scope="col">Cliente</th>
+		</tr>
+		</thead>
+		<tbody>
+			{% for order in Orders %}
+				<tr href="{% url 'orders_update' pk=order.pk %}" style="cursor: hand;" class="container">
+					<th scope="row">{{order.id}}</th>
+					<td>{{order.product}}</td>
+					<td>{{order.status}}</td>
+					<td>{{order.customer_id}}</td>
+					<td><a href="{% url 'orders_update' pk=order.pk %}" class="btn btn-primary">Editar</a></td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock content %}

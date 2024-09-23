@@ -1,16 +1,26 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
 
 {% block page_title %}
-	Clientes 
+	Cliente
 {% endblock page_title %}
 
 {% block content %}
-	<div class="d-flex justify-content-between align-items-center">
-		<h1>Pedidos {{prmt.id}}</h1>
-		<a href={% url 'orders_create' %} class="btn btn-primary btn-sm">Cadastrar Pedido</a>
-	</div>
+	{% if customers.pk %}
+		<h1>Cliente</h1>
+	{% else %}
+		<h1>Erro</h1>
+	{% endif %}
 
-	{% if orders_list %}
+	<ul>
+		<li>Código: {{customer.id}}</li>
+		<li>Nome: {{customer.firstName}} {{customer.lastName}}</li>
+		<li>Cpf: {{customer.cpf}}</li>
+	</ul>
+
+	{% comment %} {% if customers_list %} {% endcomment %}
 		<table class="table">
 			<thead>
 			<tr>
@@ -32,8 +42,9 @@
 				{% endfor %}
 			</tbody>
 		</table>
-	{% else %}
-		<p>Não há pedidos cadastrados!</p>
-	{% endif %}
-
+	{% comment %} {% else %}
+		<p>Não há clientes cadastrados!</p>
+	{% endif %} {% endcomment %}
+	
+		<a href="{% url 'home' %}" class="btn btn-secondary me-2">Voltar</a>
 {% endblock content %}
